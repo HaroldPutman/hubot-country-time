@@ -15,8 +15,9 @@
 #   Harold Putman <hputman@lexmark.com>
 
 moment = require 'moment-timezone'
-zones = require './data/country-timezone.json'
-names = require './data/country-name.json'
+require 'string_score'
+countries = require './data/country-info.json'
+aliases = require './data/aliases.json'
 
 DAY_START = 7 # Start of workday
 DAY_END = 18 # End of workday
@@ -37,70 +38,116 @@ indicator = (hr, day, night) ->
     return ':crescent_moon:'
   return ''
 
-# Look up the country code from a free-form location
-#
-# @param [String] location The location string
-# @return [String] The two character iso country code (uppercase)
-#
-findCountry = (location) ->
-  iso = location.match(/^([a-z][a-z][\-_])?([a-z][a-z])$/i)
-  if iso
-    return iso[2].toUpperCase()
+# Looks up location and gets a list of timezones for
+# that location.
+infoFromLocation = (location) ->
+  best =
+    score : 0
+    found : location
+    timezones : []
+
+  # remove filler from start and end
   location = location
-    .toLowerCase()
-    .replace(/\s+/,' ')
-    .replace(/(\s(right )?now)?[ ?.!]*$/,'')
-  for cc, name of names
-    if name.toLowerCase().indexOf(location) == 0
-      return cc
-  location = location.replace(' ', '_')
-  for cc, tz of zones
-    for z in tz
-      if z.toLowerCase().indexOf('/' + location) > 0
-        return cc
-  return null
+    .replace(/^ in /i, '')
+    .replace(/(\W*(right )?now)?\W*$/, '')
+  if not location
+    return null
+
+  # Check for ISO code
+  iso = location.toLowerCase().match((/^(?:[a-z][a-z][\-_])?([a-z][a-z])$/i))
+  if iso
+    c = countries[ iso[1] ]
+    if c
+      best =
+        score : 0.8
+        found : c.name
+        timezones : c.timezones
+      return best
+
+  # Check for location is timezone
+  z = moment.tz.zone(location)
+  if z
+    best =
+      score : 1.0
+      found : z.name
+      timezones : [ z.name ]
+    return best
+
+  # Search aliases for match
+  for loc, zone of aliases
+    s = loc.toLowerCase().score(location)
+    if s > best.score
+      best =
+        score : s
+        found : loc
+        timezones : [ zone ]
+    if s == 1.0
+      return best
+
+  # Search timezones for match
+  for zone in moment.tz.names()
+    city = zone.replace(/.*\//,'')
+    s = city.toLowerCase().score(location)
+    if s > best.score
+      best =
+        score : s
+        found : city
+        timezones : [ zone ]
+    if s == 1.0
+      return best
+
+  # Search country names for match
+  for cc, country of countries
+    s = country.name.toLowerCase().score(location)
+    if s > best.score
+      best =
+        score : s
+        found : country.name
+        timezones : country.timezones
+    if s == 1.0
+      return best
+
+  return best
 
 module.exports = (robot) ->
-  # hubot what time is it in Mexico
-  # hubot daytime en_US
-  tCommand = '(what\\s+)?(night|day)?time\\s*((is\\s+it\\s+)?in\\s+)?'
-  tCountry = '(.*)'
-  trigger = new RegExp(tCommand + tCountry, 'i')
-  robot.respond trigger, (msg) ->
-    day = (msg.match[2]?.toLowerCase() == 'day')
-    night = (msg.match[2]?.toLowerCase() == 'night')
-    location = msg.match[5]
-    if !(day || night) && !location then return #abort if just 'time'
+  # hubot what time is it in location?
+  # hubot daytime in location?
+  # hubot nighttime in location?
+  robot.respond /((?:what )?time(?: is it)?|daytime|nightt?ime)(?: in )?(.*)/i, (msg) ->
+    isDay = (msg.match[1].toLowerCase().substring(0,3) == 'day')
+    isNight = (msg.match[1].toLowerCase().substring(0,5) == 'night')
+    location = msg.match[2]
     if location
-      country = findCountry location
-      if !country || !zones[country]?
-        msg.send "Sorry, I know nothing about `#{location}`."
+      info = infoFromLocation location
+      if not info or not info.timezones.length
+        msg.send "Sorry I know nothing about `#{location}`."
         return
-      tz = zones[country]
-      if tz.length == 1
-        time = moment().tz(tz[0])
+      if info.score < 1.0
+        location = info.found
+      if info.timezones.length == 1
+        time = moment().tz(info.timezones[0])
         msg.send "It's " + time.format('h:mm a') +
-         ' in ' + names[country] + ' right now. ' +
-         indicator time.hour(), day, night
+         " in #{location} right now. " +
+         indicator time.hour(), isDay, isNight
       else
-        text = 'In ' + names[country] + ' right now it is:\n'
-        for z in tz
+        text = "In #{location} right now it is:\n"
+        for z in info.timezones
           time = moment().tz(z)
           text += time.format('h:mm a')
           text += ' (' + z.replace(/^.*\//,'').replace('_', ' ') + ')'
-          text += ' ' + indicator time.hour(), day, night
+          text += ' ' + indicator time.hour(), isDay, isNight
           text += '\n'
         msg.send text
     else
       marked = []
-      for cc, tz of zones
+      for cc, info of countries
         select = true
-        for z in tz
+        for z in info.timezones
           time = moment().tz(z)
-          i = indicator time.hour(), day, night
+          i = indicator time.hour(), isDay, isNight
           select &= i.length > 0
-        if select then marked.push names[cc]
-      if day
+        if select then marked.push info.name
+      if isDay
         text = "It's daytime in: "
       else
         text = "It's nighttime in: "
