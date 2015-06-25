@@ -1,0 +1,358 @@
+{
+    "ar": {
+      "name": "Argentina",
+      "timezones": [
+        "America/Argentina/Buenos_Aires"
+      ]
+    },
+    "at": {
+      "name": "Austria",
+      "timezones": [
+          "Europe/Vienna"
+      ]
+    },
+    "au": {
+      "name": "Australia",
+      "timezones": [
+        "Australia/Melbourne",
+        "Australia/Brisbane",
+        "Australia/Perth"
+      ]
+    },
+    "be": {
+      "name": "Belgium",
+      "timezones": [
+        "Europe/Brussels"
+      ]
+    },
+    "bg": {
+      "name": "Bulgaria",
+      "timezones": [
+        "Europe/Sofia"
+      ]
+    },
+    "br": {
+      "name": "Brazil",
+      "timezones": [
+        "America/Noronha",
+        "America/Sao_Paulo",
+        "America/Campo_Grande",
+        "America/Eirunepe"
+      ]
+    },
+    "ca": {
+      "name": "Canada",
+      "timezones": [
+        "America/Vancouver",
+        "America/Edmonton",
+        "America/Winnipeg",
+        "America/Montreal",
+        "America/Halifax",
+        "America/St_Johns"
+      ]
+    },
+    "ch": {
+      "name": "Switzerland",
+      "timezones": [
+        "Europe/Zurich"
+      ]
+    },
+    "cn": {
+      "name": "China",
+      "timezones": [
+        "Asia/Shanghai",
+        "Asia/Urumqi"
+      ]
+    },
+    "co": {
+      "name": "Colombia",
+      "timezones": [
+        "America/Bogota"
+      ]
+    },
+    "cz": {
+      "name": "Czech Republic",
+      "timezones": [
+        "Europe/Prague"
+      ]
+    },
+    "de": {
+      "name": "Germany",
+      "timezones": [
+        "Europe/Berlin"
+      ]
+    },
+    "dk": {
+      "name": "Denmark",
+      "timezones": [
+        "Europe/Copenhagen"
+      ]
+    },
+    "es": {
+      "name": "Spain",
+      "timezones": [
+        "Europe/Madrid"
+      ]
+    },
+    "fi": {
+      "name": "Finland",
+      "timezones": [
+        "Europe/Helsinki"
+      ]
+    },
+    "fr": {
+      "name": "France",
+      "timezones": [
+        "Europe/Paris"
+      ]
+    },
+    "gb": {
+      "name": "Great Britain",
+      "timezones": [
+        "Europe/London"
+      ]
+    },
+    "gr": {
+      "name": "Greece",
+      "timezones": [
+        "Europe/Athens"
+      ]
+    },
+    "hk": {
+      "name": "Hong Kong",
+      "timezones": [
+        "Asia/Hong_Kong"
+      ]
+    },
+    "hr": {
+      "name": "Croatia",
+      "timezones": [
+        "Europe/Belgrade"
+      ]
+    },
+    "hu": {
+      "name": "Hungary",
+      "timezones": [
+        "Europe/Budapest"
+      ]
+    },
+    "id": {
+      "name": "Indonesia",
+      "timezones": [
+        "Asia/Jakarta",
+        "Asia/Makassar",
+        "Asia/Jayapura"
+      ]
+    },
+    "ie": {
+      "name": "Ireland",
+      "timezones": [
+        "Europe/Dublin"
+      ]
+    },
+    "il": {
+      "name": "Israel",
+      "timezones": [
+        "Asia/Jerusalem"
+      ]
+    },
+    "in": {
+      "name": "India",
+      "timezones": [
+        "Asia/Kolkata"
+      ]
+    },
+    "it": {
+      "name": "Italy",
+      "timezones": [
+        "Europe/Rome"
+      ]
+    },
+    "jp": {
+      "name": "Japan",
+      "timezones": [
+        "Asia/Tokyo"
+      ]
+    },
+    "kr": {
+      "name": "Korea",
+      "timezones": [
+        "Asia/Seoul"
+      ]
+    },
+    "mx": {
+      "name": "Mexico",
+      "timezones": [
+        "America/Mexico_City",
+        "America/Chihuahua",
+        "America/Tijuana"
+      ]
+    },
+    "my": {
+      "name": "Malaysia",
+      "timezones": [
+        "Asia/Kuala_Lumpur"
+      ]
+    },
+    "nl": {
+      "name": "Netherlands",
+      "timezones": [
+        "Europe/Amsterdam"
+      ]
+    },
+    "no": {
+      "name": "Norway",
+      "timezones": [
+        "Europe/Oslo"
+      ]
+    },
+    "nz": {
+      "name": "New Zealand",
+      "timezones": [
+        "Pacific/Auckland"
+      ]
+    },
+    "ph": {
+      "name": "Philippines",
+      "timezones": [
+        "Asia/Manila"
+      ]
+    },
+    "pl": {
+      "name": "Poland",
+      "timezones": [
+        "Europe/Warsaw"
+      ]
+    },
+    "pt": {
+      "name": "Portugal",
+      "timezones": [
+        "Europe/Lisbon"
+      ]
+    },
+    "ro": {
+      "name": "Romania",
+      "timezones": [
+        "Europe/Bucharest"
+      ]
+    },
+    "rs": {
+      "name": "Serbia",
+      "timezones": [
+        "Europe/Belgrade"
+      ]
+    },
+    "ru": {
+      "name": "Russia",
+      "timezones": [
+        "Europe/Kaliningrad",
+        "Europe/Moscow",
+        "Europe/Samara",
+        "Asia/Yekaterinburg",
+        "Asia/Omsk",
+        "Asia/Novokuznetsk",
+        "Asia/Irkutsk",
+        "Asia/Yakutsk",
+        "Asia/Vladivostok",
+        "Asia/Srednekolymsk",
+        "Asia/Anadyr"
+      ]
+    },
+    "se": {
+      "name": "Sweden",
+      "timezones": [
+        "Europe/Stockholm"
+      ]
+    },
+    "sg": {
+      "name": "Singapore",
+      "timezones": [
+        "Asia/Singapore"
+      ]
+    },
+    "si": {
+      "name": "Slovenia",
+      "timezones": [
+        "Europe/Belgrade"
+      ]
+    },
+    "sk": {
+      "name": "Slovakia",
+      "timezones": [
+        "Europe/Prague"
+      ]
+    },
+    "th": {
+      "name": "Thailand",
+      "timezones": [
+        "Asia/Bangkok"
+      ]
+    },
+    "tr": {
+      "name": "Turkey",
+      "timezones": [
+        "Europe/Istanbul"
+      ]
+    },
+    "tw": {
+      "name": "Taiwan",
+      "timezones": [
+        "Asia/Taipei"
+      ]
+    },
+    "ua": {
+      "name": "Ukraine",
+      "timezones": [
+        "Europe/Kiev"
+      ]
+    },
+    "us": {
+      "name": "United States",
+      "timezones": [
+        "America/Los_Angeles",
+        "America/Denver",
+        "America/Chicago",
+        "America/New_York"
+      ]
+    },
+    "xa": {
+      "name": "Africa",
+      "timezones": [
+        "Africa/Abidjan",
+        "Africa/Lagos",
+        "Africa/Maputo",
+        "Africa/Nairobi"
+      ]
+    },
+    "xc": {
+      "name": "Caribbean",
+      "timezones": [
+        "America/Jamaica",
+        "America/Santo_Domingo"
+      ]
+    },
+    "xl": {
+      "name": "Latin America",
+      "timezones": [
+        "America/Lima",
+        "America/Caracas",
+        "America/La_Paz",
+        "America/Montevideo"
+      ]
+    },
+    "xm": {
+      "name": "Middle East",
+      "timezones": [
+        "Asia/Amman",
+        "Asia/Riyadh",
+        "Asia/Tehran",
+        "Asia/Dubai"
+      ]
+    },
+    "za": {
+      "name": "South Africa",
+      "timezones": [
+        "Africa/Johannesburg"
+      ]
+    }
+}
