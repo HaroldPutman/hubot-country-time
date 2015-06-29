@@ -97,7 +97,7 @@ infoFromLocation = (location) ->
 
   # Search timezones for match
   for zone in moment.tz.names()
-    city = zone.replace(/.*\//,'')
+    city = zone.replace(/.*\//,'').replace(/_/g, ' ')
     s = city.toLowerCase().score(location.toLowerCase(), 0.001)
     if s > 0.40 && s > best.score
       best =

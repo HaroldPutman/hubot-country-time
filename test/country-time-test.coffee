@@ -78,6 +78,12 @@ describe 'country-time', ->
     @robot.respond.args[0][1](@msg)
     expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in Helsingborg right now/)
 
+  it 'responds to "time in Ho Chi Minh" with the city', ->
+    @msg.match = [0, 'time', 'Ho Chi Minh']
+    @robot.respond.args[0][1](@msg)
+    expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in Ho Chi Minh right now/)
+
+
   it 'responds to "time in Area51" with unknown', ->
     @msg.match = [0, 'time', 'Area51']
     @robot.respond.args[0][1](@msg)
