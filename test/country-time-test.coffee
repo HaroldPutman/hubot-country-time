@@ -43,10 +43,10 @@ describe 'country-time', ->
     @robot.respond.args[0][1](@msg)
     expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in sweden right now/)
 
-  it 'responds to "what time is it in Lenexa" with alias', ->
-    @msg.match = [0, 'time', 'Lenexa?']
+  it 'responds to "what time is it in helsingborg?" with alias', ->
+    @msg.match = [0, 'time', 'helsingborg?']
     @robot.respond.args[0][1](@msg)
-    expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in Lenexa right now/)
+    expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in Helsingborg right now/)
 
   it 'responds to "what time is it in Phoenix?" with timezone city', ->
     @msg.match = [0, 'time', 'Phoenix?']
@@ -59,7 +59,7 @@ describe 'country-time', ->
     expect(@msg.send).to.have.been.calledWithMatch(/^In United States right now it is:/)
 
   it 'responds to "time in CET" with timezone', ->
-    @msg.match = [0, 'time', 'CET']
+    @msg.match = [0, 'time', 'CET?']
     @robot.respond.args[0][1](@msg)
     expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in CET right now\./)
 
@@ -72,6 +72,11 @@ describe 'country-time', ->
     @msg.match = [0, 'time', 'phoe']
     @robot.respond.args[0][1](@msg)
     expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in Phoenix right now\./)
+
+  it 'responds to "what time is it in heisingburg" with Helsingborg', ->
+    @msg.match = [0, 'time', 'heisingberg']
+    @robot.respond.args[0][1](@msg)
+    expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in Helsingborg right now/)
 
   it 'responds to "time in Area51" with unknown', ->
     @msg.match = [0, 'time', 'Area51']
