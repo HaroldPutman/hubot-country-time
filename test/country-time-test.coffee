@@ -44,12 +44,12 @@ describe 'country-time', ->
     expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in sweden right now/)
 
   it 'responds to "what time is it in Lenexa" with alias', ->
-    @msg.match = [0, 'time', 'Lenexa']
+    @msg.match = [0, 'time', 'Lenexa?']
     @robot.respond.args[0][1](@msg)
     expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in Lenexa right now/)
 
-  it 'responds to "what time is it in Phoenix" with timezone city', ->
-    @msg.match = [0, 'time', 'Phoenix']
+  it 'responds to "what time is it in Phoenix?" with timezone city', ->
+    @msg.match = [0, 'time', 'Phoenix?']
     @robot.respond.args[0][1](@msg)
     expect(@msg.send).to.have.been.calledWithMatch(/^It's .* in Phoenix right now/)
 
