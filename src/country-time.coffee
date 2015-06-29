@@ -75,35 +75,35 @@ infoFromLocation = (location) ->
 
   # Search aliases for match
   for loc, zone of aliases
-    s = loc.toLowerCase().score(location)
-    if s > best.score
+    s = loc.toLowerCase().score(location.toLowerCase(), 0.001)
+    if s > 0.23 && s > best.score
       best =
-        score : s
+        score : s - 0.001
         found : loc
-        timezones : [ zone ]
-    if s == 1.0
-      return best
-
-  # Search timezones for match
-  for zone in moment.tz.names()
-    city = zone.replace(/.*\//,'')
-    s = city.toLowerCase().score(location)
-    if s > best.score
-      best =
-        score : s
-        found : city
         timezones : [ zone ]
     if s == 1.0
       return best
 
   # Search country names for match
   for cc, country of countries
-    s = country.name.toLowerCase().score(location)
-    if s > best.score
+    s = country.name.toLowerCase().score(location.toLowerCase(), 0.001)
+    if s > 0.30 && s > best.score
       best =
         score : s
         found : country.name
         timezones : country.timezones
+    if s == 1.0
+      return best
+
+  # Search timezones for match
+  for zone in moment.tz.names()
+    city = zone.replace(/.*\//,'')
+    s = city.toLowerCase().score(location.toLowerCase(), 0.001)
+    if s > 0.40 && s > best.score
+      best =
+        score : s
+        found : city
+        timezones : [ zone ]
     if s == 1.0
       return best
 
@@ -116,7 +116,7 @@ module.exports = (robot) ->
   robot.respond /((?:what )?time(?: is it)?|daytime|nightt?ime)(?: in )?(.*)/i, (msg) ->
     isDay = (msg.match[1].toLowerCase().substring(0,3) == 'day')
     isNight = (msg.match[1].toLowerCase().substring(0,5) == 'night')
-    location = msg.match[2]
+    location = msg.match[2]?.replace(/\W+$/,'')
     if location
       info = infoFromLocation location
       if not info or not info.timezones.length
