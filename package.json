@@ -1,7 +1,7 @@
 {
   "name": "hubot-country-time",
   "description": "Hubot script to show time in a specified country",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Harold Putman <hputman@lexmark.com>",
   "license": "MIT",
   "keywords": "hubot, hubot-scripts",
